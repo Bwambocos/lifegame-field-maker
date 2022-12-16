@@ -11,3 +11,9 @@ export default defineConfig({
 		},
 	},
 });
+
+vue.exports = {
+	outputDir: "docs",
+	assetsDir: "./",
+	publicPath: "./",
+};
