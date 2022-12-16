@@ -10,10 +10,5 @@ export default defineConfig({
 			"@": fileURLToPath(new URL("./src", import.meta.url)),
 		},
 	},
+	base: "/lifegame-field-maker/",
 });
-
-vue.exports = {
-	outputDir: "docs",
-	assetsDir: "./",
-	publicPath: "./",
-};
