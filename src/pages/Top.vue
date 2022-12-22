@@ -1,20 +1,21 @@
 <template>
 	<main>
 		<div class="wrapper">
-			<div v-for="i in size" :key="i" class="row">
-				<div v-for="j in size" :key="j" @click="set(i, j)">
-					<div v-if="check(i, j)" class="box fill"></div>
-					<div v-else class="box"></div>
-				</div>
-			</div>
 			<div class="buttons">
 				<button type="button" @click="add()">+</button>
 				<button type="button" @click="sub()">-</button>
+			</div>
+			<div v-for="i in size" :key="i" class="row">
+				<div v-for="j in size" :key="j" @mousedown="set(i, j)">
+					<div v-if="check(i, j)" class="box fill"></div>
+					<div v-else class="box"></div>
+				</div>
 			</div>
 			<button type="button" @click="reset()">リセット</button>
 			<div class="output">
 				<textarea :cols="size * 2 + 2" :rows="size" v-model="output"></textarea>
 			</div>
+			<button type="button" @click="copy()">クリップボードにコピー</button>
 		</div>
 	</main>
 </template>
@@ -86,6 +87,12 @@ export default {
 				this.field[i] = Array(this.size);
 				this.field[i].fill(0);
 			}
+			this.save();
+		},
+
+		copy() {
+			navigator.clipboard.writeText(this.output);
+			alert("copied!");
 		},
 	},
 
